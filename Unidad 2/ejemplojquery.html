@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic Page - Massively by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Massively</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">This is Massively</a></li>
+							<li class="active"><a href="generic.html">Generic Page</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+                        <article>
+                            <button id="iddom">Esconde texto</button>
+                            <button id="iddom3">Muestra texto</button>
+							<h1 id="iddom2">El texto a esconder</h1>
+                            <form id="form1">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Email address</label>
+                                  <input type="email" class="form-control" id="email2" aria-describedby="emailHelp" placeholder="Enter email">
+                                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">Password</label>
+                                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </form>
+                        </article>
+
+					</div>
+
+				<!-- Footer -->
+
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+            <script>
+                $(document).ready(function() {
+                    var listaDatos = ["example@email.com",
+                     "example2@email.com", 
+                     "example3@email.com"]; // Tu lista de datos
+                    
+                    $('#form1').submit(function(event) {
+                        event.preventDefault(); // Evita que el formulario se envíe
+                        
+                        var valorCampo = $('#email2').val();
+                        
+                        if (!listaDatos.includes(valorCampo)) {
+                            alert('¡El valor es válido!');
+                            // Aquí puedes realizar otras acciones si el valor es válido
+                        } else {
+                            alert('¡El valor no es válido!');
+                            // Aquí puedes mostrar un mensaje de error al usuario o realizar otras acciones si el valor no es válido
+                        }
+                    });
+                });
+
+
+			</script>
+
+
+	</body>
+</html>
