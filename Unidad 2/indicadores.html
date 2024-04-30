@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores Económicos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Indicadores Económicos</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Indicador</th>
+                    <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <tbody id="indicators-body">
+               
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON('https://mindicador.cl/api', function(data) {
+                var indicators = data;
+                var indicatorsTable = $('#indicators-body');
+                $.each(indicators, function(key, value) {
+                    if(typeof value === 'object') {
+                        var indicatorRow = $('<tr>');
+                        $('<td>').text(value.codigo).appendTo(indicatorRow);
+                        $('<td>').text(value.nombre).appendTo(indicatorRow);
+                        $('<td>').text(value.valor).appendTo(indicatorRow);
+                        indicatorsTable.append(indicatorRow);
+                    }
+                });
+            }).fail(function() {
+                console.log('Error al consumir la API!');
+            });
+        });
+    </script>
+</body>
+</html>
