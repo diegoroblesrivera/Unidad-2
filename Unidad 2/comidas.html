@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comidas</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <h1>Categorías de comida</h1>
+    <button id="listarCategorias" style="margin-bottom:5%;">Traer Datos</button>
+    <div class="container">
+        <div class="row" id = "categoriasComida">
+
+        </div>
+
+    </div>
+    
+
+	<!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>  
+        
+        <script>
+
+        $(document).ready(function() {
+            $("#listarCategorias").click(function() {
+                $.get("https://www.themealdb.com/api/json/v1/1/categories.php", function(data) {
+                    $.each(data.categories, function(i, item) {
+                        $("#categoriasComida").append(
+                            `<div class="col-md-4">
+                                    <div class = "card" style = "margin-bottom: 5%; border: 2px solid black; height:98%;">
+                                        <img class="card-img-top" src="${item.strCategoryThumb}" style="border-bottom: 2px solid black;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${item.idCategory} ${item.strCategory}</h5>
+                                            <br>
+                                            <p>${item.strCategoryDescription}</p>
+                                        </div>
+                                    </div>
+                            </div>` 
+                        );
+                    });
+                });
+            });
+        });
+
+        </script>
+
+</body>
+</html>
