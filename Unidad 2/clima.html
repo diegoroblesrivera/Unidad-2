@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+    <script>
+            const settings = {
+                async: true,
+                crossDomain: true,
+                url: 'https://yahoo-weather5.p.rapidapi.com/weather?location=Santiago&format=json&u=c',
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'f46f0bb8c1mshb13ff6eae79a328p1ab2ebjsndddd61495b32',
+                    'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                console.log(response.location.city);
+            });
+</script>
+</body>
+</html>
