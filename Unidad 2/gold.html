@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 id="gold"></h1>
+    <h1 id="silver"></h1>
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script>
+        const settings = {
+            async: true,
+            crossDomain: true,
+            url: 'https://youtube-media-downloader.p.rapidapi.com/v2/video/details?videoId=G33j5Qi4rE8',
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '99eecdfa58msh5054db80e1cc2a4p1b0c87jsn8ad641b29b85',
+                'X-RapidAPI-Host': 'youtube-media-downloader.p.rapidapi.com'
+            }
+        };
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+
+    </script>
+</body>
+</html>

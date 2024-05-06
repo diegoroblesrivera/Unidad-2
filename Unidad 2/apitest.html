@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css);
+
+body {
+	background: linear-gradient(90deg, #7474BF 10%, #348AC7 90%);
+}
+#weather_wrapper{
+	width: 400px;
+	margin: 100px auto;
+}
+.weatherCard{
+	width: 400px;
+	height: 200px;
+	font-family: 'Open Sans';
+	position: relative;
+}
+.currentTemp{
+	width: 220px;
+	height: 200px;
+	background: rgb(41, 41, 41);
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.currentWeather{
+	width: 180px;
+	height: 200px;
+	background: rgb(237, 237, 237);
+	margin: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.temp{
+	font-size: 80px;
+	text-align: center;
+	display: block;
+	font-weight: 300;
+	color: rgb(255, 255, 255);
+	padding: 20px 0 0;
+}
+.location{
+	color: rgb(255, 255, 255);
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 30px;
+	display: block;
+}
+.conditions{
+	font-family: weathericons;
+	font-size: 80px;
+	display: block;
+	padding: 20px 0 0;
+	text-align: center;
+}
+.info{
+	width: 180px;
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: rgb(42, 178, 234);
+	font-weight: 700;
+	color: rgb(255, 255, 255);
+	text-align: center;
+}
+.rain {
+	width: 50%;
+	position: absolute;
+	left: 10px;
+	word-spacing: 60px;
+	top: 3px;
+}
+.rain::before{
+	display: block;
+	content: '\f04e';
+	font-family: weathericons;
+	font-size: 40px;
+	left: 6px;
+	top: -4px;
+	position: absolute;
+}
+.wind {
+	width: 50%;
+	right: -10px;
+	position: absolute;
+	word-spacing: 60px;
+	top: 3px;
+}
+.wind::before{
+	display: block;
+	content: '\f050';
+	font-family: weathericons;
+	font-size: 25px;
+	left: -10px;
+	position: absolute;
+	top: 5px;
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="row">
+            <div id="temperaturas"></div>
+        </div>
+
+    </div>
+    <div id="temperaturas"></div>
+
+
+    		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+    <script>
+        const settings = {
+            async: true,
+            crossDomain: true,
+            url: 'https://yahoo-weather5.p.rapidapi.com/weather?location=santiago&format=json&u=c',
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '99eecdfa58msh5054db80e1cc2a4p1b0c87jsn8ad641b29b85',
+                'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+            }
+        };
+        
+        $.ajax(settings).done(function (response) {
+            // Crear un objeto para almacenar las temperaturas de los próximos 7 días
+            var temperaturas = {};
+        
+            // Iterar sobre los pronósticos de los próximos 7 días
+            for (var i = 0; i < 7; i++) {
+                var dia = response.forecasts[i].day; // Obtener el día de la semana
+                var temperaturaMax = response.forecasts[i].high; // Obtener la temperatura máxima
+                var temperaturaMin = response.forecasts[i].low; // Obtener la temperatura mínima
+        
+                // Agregar las temperaturas al objeto
+                temperaturas[dia] = {
+                    temperaturaMaxima: temperaturaMax,
+                    temperaturaMinima: temperaturaMin
+                };
+            }
+        
+            // Mostrar las temperaturas en el div usando jQuery
+            var $temperaturasDiv = $("#temperaturas");
+            for (var dia in temperaturas) {
+                var temperatura = temperaturas[dia];
+                var temperaturaHTML = '<div class="weatherCard">' +
+                                        '<div class="currentTemp">' +
+                                          '<span class="temp">' + temperatura.temperaturaMaxima + '°C</span>' +
+                                          '<span class="location">' + dia + '</span>' +
+                                        '</div>' +
+                                        '<div class="currentWeather">' +
+                                          '<span class="conditions">&#xf00d;</span>' +
+                                          '<div class="info">' +
+                                            '<span class="rain">1.3 MM</span>' + // Reemplazar esto con los datos reales si los tienes
+                                            '<span class="wind">10 MPH</span>' + // Reemplazar esto con los datos reales si los tienes
+                                          '</div>' +
+                                        '</div>' +
+                                      '</div>';
+                $temperaturasDiv.append(temperaturaHTML);
+            }
+            
+            
+        });
+        
+
+
+
+
+    </script>
+</body>
+</html>
