@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		
+    <title>Document</title>
+
+</head>
+<body>
+
+<div class="Container">
+    <h1>Datos de Prueba</h1>
+    <div id="datosFurbol">
+
+    </div>
+</div>
+
+        		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+    <script>
+        const settings = {
+                async: true,
+                crossDomain: true,
+                url: 'https://futboltimeapi.p.rapidapi.com/v1/partidos-por-fecha?fecha=2024-05-04',
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'f46f0bb8c1mshb13ff6eae79a328p1ab2ebjsndddd61495b32',
+                    'X-RapidAPI-Host': 'futboltimeapi.p.rapidapi.com'
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response[0]);
+             
+
+                 response.forEach(element => {
+                    $("#datosFurbol").append("Campeonato :"+element.campeonato+"<br>"+
+                                            "<b>"+element.equipo1+"</b>"+" contra "+"<b>"+
+                                                element.equipo2+"</b><br>"
+                                                                                    );
+                 });
+               
+            });
+    </script>
+</body>
+</html>

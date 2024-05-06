@@ -29,6 +29,7 @@
         <script src="assets/js/main.js"></script>  
         
         <script>
+<<<<<<< HEAD
             $(document).ready(function() {
                     $("#listarCategorias").click(function() {
                         $.get("https://www.themealdb.com/api/json/v1/1/categories.php", function(data) {
@@ -47,6 +48,25 @@
                                 );
                             });
                         });
+=======
+
+        $(document).ready(function() {
+            $("#listarCategorias").click(function() {
+                $.get("https://www.themealdb.com/api/json/v1/1/categories.php", function(data) {
+                    $.each(data.categories, function(i, item) {
+                        $("#categoriasComida").append(
+                            `<div class="col-md-4">
+                                    <div class = "card" style = "margin-bottom: 5%; border: 2px solid black; height:98%;">
+                                        <img class="card-img-top" src="${item.strCategoryThumb}" style="border-bottom: 2px solid black;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${item.idCategory} ${item.strCategory}</h5>
+                                            <br>
+                                            <p> ${item.strCategoryDescription}</p>
+                                        </div>
+                                    </div>
+                            </div>` 
+                        );
+>>>>>>> b4df4f27ed81c92cb0aac85f74f5e97f94441ee3
                     });
                 }); 
 
