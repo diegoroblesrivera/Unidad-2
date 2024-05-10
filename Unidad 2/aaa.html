@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <h1>Hola mundo</h1>
+    <div id="hola"></div>
+
+    <script>
+        const settings = {
+            async: true,
+            crossDomain: true,
+            url: 'https://all-in-one-recipe-api.p.rapidapi.com/details/10236',
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'f46f0bb8c1mshb13ff6eae79a328p1ab2ebjsndddd61495b32',
+                'X-RapidAPI-Host': 'all-in-one-recipe-api.p.rapidapi.com'
+            }
+        };
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            console.log(response.recipe.data.Category);
+            $("#hola").append("<h2>La categoria es "+response.recipe.data.Category+"</h2>")
+        });
+        
+    </script>
+    
+</body>
+</html>
