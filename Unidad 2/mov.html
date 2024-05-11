@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies top 100</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/mov.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div class="card">
+        <p class="heading">
+          Popular this month
+        </p>
+        <p>
+          Powered By
+        </p>
+        <p>Uiverse
+      </p></div>
+    <div class="container">
+        <div class="row" id="movie">
+
+        </div>
+    </div>
+
+
+    
+
+    <script>
+        const settings = {
+            async: true,
+            crossDomain: true,
+            url: 'https://imdb-top-100-movies.p.rapidapi.com/',
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'f46f0bb8c1mshb13ff6eae79a328p1ab2ebjsndddd61495b32',
+                'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
+            }
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            console.log(response[14].title);
+            $.each(response , function(i, item){
+                $("#movie").append(`         <div class="img-card iCard-style3">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <span id="tilte" class="card-title">${item.title}</span>
+                                <img src="${item.image}"/>
+                            </div>
+                            
+                            <div class="card-text">
+                                <p>
+                                    ${item.description}
+                                </p>
+                            </div>
+                           <a href="${item.imdb_link}"> <button class="btn btn-info">Ver IDMB</button></a>
+                            
+                        </div> `)
+            })
+            
+        
+        });
+    </script>
+</body>
+</html>
